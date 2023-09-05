@@ -1,18 +1,26 @@
-import {ChatEngine} from 'react-chat-engine';
-import './App.css';
+import { ChatEngine } from 'react-chat-engine';
+
 import ChatFeed from './components/ChatFeed';
+import LoginForm from './components/LoginForm';
+import './App.css';
 
-const App = () =>{
-    return(
-        <ChatEngine 
-            height = '100vh'
-            projectID = "dadc4b6d-9a53-4f07-8030-cee9647a4a90"
-            userName = "firefurry"
-            userSecret = "12345"
-            renderChatFeed = {(chatAppProps) => <ChatFeed {...chatAppProps}/>}
-        />
+const projectID = 'b773a05f-532e-4c79-981c-08fece7534e0';
 
-    )
-}
+const App = () => {
+  if (!localStorage.getItem('username')) return <LoginForm />;
+
+  return (
+    <ChatEngine
+      height="100vh"
+      projectID={projectID}
+      userName={localStorage.getItem('username')}
+      userSecret={localStorage.getItem('password')}
+      renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+      onNewMessage={() => new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}
+    />
+  );
+};
+
+// infinite scroll, logout, more customizations...
 
 export default App;
