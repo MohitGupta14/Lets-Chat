@@ -2,7 +2,7 @@ import {ChatEngine} from 'react-chat-engine';
 import './App.css';
 import ChatFeed from './components/ChatFeed';
 
-const App =()=>{
+const App = () =>{
     return(
         <ChatEngine 
             height = '100vh'
@@ -11,6 +11,7 @@ const App =()=>{
             userSecret = "12345"
             renderChatFeed = {(chatAppProps) => <ChatFeed {...chatAppProps}/>}
         />
+
     )
 }
 
